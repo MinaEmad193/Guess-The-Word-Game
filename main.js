@@ -8,7 +8,7 @@ document.querySelector("footer").innerHTML = `${gameName} Game Created By Mina`
 // Manage Words
 let wordToGuess = ""
 let word = ["Create","Update","Delete","Master","Branch","Mainly","School","Basket","Laptop","Banana"]
-wordToGuess = word[Math.floor(Math.random() * word.length)].toLocaleLowerCase()
+wordToGuess = word[Math.floor(Math.random() * word.length)].toUpperCase()
 console.log(wordToGuess)
 
 
@@ -40,6 +40,7 @@ function generateInput() {
         for(let j = 1; j <= numberOfLetters; j++) {
             const input = document.createElement("input")
             input.type = "text"
+            input.setAttribute("style", "text-transform: uppercase")
             input.id = `guess-${i}-letter-${j}`
             input.setAttribute("maxlength","1")
             tryDiv.appendChild(input)
@@ -82,7 +83,7 @@ function handelGuesses() {
     // Check Letters
     for(let i = 1; i <= numberOfLetters; i++) {
         const inputField = document.querySelector(`#guess-${currentTry}-letter-${i}`)
-        const letter = inputField.value
+        const letter = inputField.value.toUpperCase()
         if (letter === wordToGuess[i - 1]) {
             inputField.classList.add("yes-in-place")
         } else if(wordToGuess.includes(letter) && letter !== "") {
@@ -119,7 +120,9 @@ function handelGuesses() {
             // Disable the current field and Go to the next
             document.querySelector(`.try-${currentTry}`).classList.add("disabled-inputs")
             document.querySelector(`.try-${currentTry + 1}`).classList.remove("disabled-inputs")
+            let currentInput = document.querySelectorAll(`.try-${currentTry} input`)
             let nextInputField = document.querySelectorAll(`.try-${currentTry + 1} input`)
+            currentInput.forEach((input) => (input.disabled = true))
             nextInputField.forEach((input) => (input.disabled = false))
             currentTry++
             document.querySelector(`.try-${currentTry}`).children[1].focus()
@@ -151,6 +154,7 @@ function getHint() {
         hints.classList.add(`btn-disabled`)
     }
     const enabledInputs = document.querySelectorAll(`input:not([disabled])`)
+    console.log(enabledInputs)
     const emptyEnabledInputs = Array.from(enabledInputs).filter((input) => input.value === "")
 
     if (emptyEnabledInputs.length > 0) {
