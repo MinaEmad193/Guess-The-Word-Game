@@ -1,0 +1,859 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color:#f44336;
+}
+
+body {
+    margin:0;
+    background-color: #eee;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 25px;
+    padding:20px;
+    margin: 0;
+    background-color: white;
+}
+
+.guess-game {
+    text-align: center;
+    max-width:1000px;
+    margin:auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding:20px;
+    .game-area {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:10px;
+        .message {
+            padding:5px 10px;
+            border-radius: 3px;
+            color:white;
+            font-weight: bold;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            gap:5px;
+        }
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:0px;
+            .try-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom:5px;
+                gap:5px;
+                font-size: 25px;
+                font-weight: bold;
+                span {
+                    margin-right:5px;
+                }
+            }
+            .disabled-inputs {
+                opacity:0.5;
+                pointer-events: none;
+            }
+            input {
+                width:50px;
+                height:50px;
+                text-align: center;
+                font-size: 45px;
+                caret-color: #333;
+                background-color: white;
+                border:none;
+                border-bottom:3px #333 solid;
+                outline: none;
+                border-radius: 3px;
+                text-transform: uppercase;
+                &.yes-in-place {
+                    color:white;
+                    background-color: #f89e13;
+                }
+                &.not-in-place {
+                    color:white;
+                    background-color: #18ba89;
+                }
+                &.no {
+                    color:white;
+                    background-color: #f44336;
+                }
+            }
+        }
+        .control {
+            display: flex;
+            width:100%;
+            gap:15px;
+            .check {
+                background-color: var(--primary-color);
+                color:white;
+                font-weight: bold;
+                border:none;
+                border-radius: 3px;
+                flex:1;
+                cursor: pointer;
+                font-size: 16px;
+                padding:13px 20px;
+            }
+            .hint {
+                font-size: 16px;
+                background-color: #18ba89;
+                color:white;
+                font-weight: bold;
+                border:none;
+                border-radius: 3px;
+                padding:10px;
+                width:fit-content;
+                cursor: pointer;
+                padding:13px 20px;
+            }
+            .btn-disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .keys-area {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+        margin-left:20px;
+        .keys-cont {
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+            h2 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            .color-box {
+                padding:10px;
+                background-color: white;
+                font-weight: bold;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                gap:10px;
+                border-radius: 3px;
+                .yellow-color {
+                    padding:13px;
+                    background-color:#f89e13;
+                    border-radius: 3px;
+                }
+                .green-color {
+                    padding:13px;
+                    background-color: #18ba89;
+                    border-radius: 3px;
+                }
+                .red-color {
+                    padding:13px;
+                    background-color: rgb(221, 22, 22);
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+
+}
+
+
+footer {
+    padding:20px;
+    background-color: #333;
+    color:white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width:100%;
+}
+
+@media (max-width: 775px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: row;
+        justify-content: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0;
+                .try-box {
+                    margin:0;
+                    margin-bottom: 3px;
+                }
+                input {
+                    font-size: 50px;
+                    width:50px;
+                    height:50px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-bottom: 15px;
+            margin-left: 20px;
+            flex-direction: column;
+            h2 {
+                font-size: 20px;
+            }
+            .keys-cont {
+                flex-direction: column;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 715px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: row;
+        justify-content: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0;
+                .try-box {
+                    margin:0;
+                    margin-bottom: -5px;
+                }
+                input {
+                    font-size: 48px;
+                    width:48px;
+                    height:48px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-bottom: 15px;
+            margin-left: 20px;
+            flex-direction: column;
+            h2 {
+                font-size: 20px;
+            }
+            .keys-cont {
+                flex-direction: column;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 569px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:5px;
+                .try-box {
+                    margin:0;
+                }
+                input {
+                    font-size: 40px;
+                    width:40px;
+                    height:40px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                margin-top:-10px;
+                margin-bottom:5px;
+                font-size: 20px;
+            }
+            .keys-cont {
+                flex-direction: row;
+                gap:5px;
+                .color-box {
+                    padding:3px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:5px;
+                .try-box {
+                    margin:0;
+                }
+                input {
+                    font-size: 40px;
+                    width:40px;
+                    height:40px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                margin-top:-10px;
+                margin-bottom:5px;
+                font-size: 20px;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+}
+
+@media (max-width: 410px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:3px;
+                .try-box {
+                    margin:0;
+                    margin-bottom: 0;
+                }
+                input {
+                    font-size: 40px;
+                    width:40px;
+                    height:40px;
+                }
+            }
+            .control {
+                .check {
+                    padding:7px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                margin-top:-10px;
+                margin-bottom:5px;
+                font-size: 20px;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+}
+
+@media (max-width: 373px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0px;
+                .try-box {
+                    margin:0;
+                    margin-bottom: 3px;
+                    span {
+                        font-size:20px;
+                    }
+                }
+                input {
+                    font-size: 40px;
+                    width:40px;
+                    height:40px;
+                }
+            }
+            .control {
+                .check {
+                    padding:7px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                margin-top:-10px;
+                margin-bottom:5px;
+                font-size: 20px;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+}
+
+@media (max-width: 363px) {
+    h1 {
+        margin:0;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0px;
+                .try-box {
+                    margin:0;
+                    margin-bottom: -2px;
+                    span {
+                        font-size:20px;
+                    }
+                }
+                input {
+                    font-size: 40px;
+                    width:40px;
+                    height:40px;
+                }
+            }
+            .control {
+                .check {
+                    padding:7px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                display: none;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+}
+
+@media (max-width: 325px) {
+    h1 {
+        margin:0;
+        padding:10px;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0px;
+                .try-box {
+                    margin:0;
+                    margin-bottom: 4px;
+                    span {
+                        display: none;
+                    }
+                }
+                input {
+                    font-size: 40px;
+                    width:40px;
+                    height:40px;
+                }
+            }
+            .control {
+                .check {
+                    padding:7px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                display: none;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+    footer {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 280px) {
+    h1 {
+        margin:0;
+        padding:10px;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0px;
+                .try-box {
+                    margin:0;
+                    margin-bottom: 4px;
+                    span {
+                        display: none;
+                    }
+                }
+                input {
+                    font-size: 35px;
+                    width:35px;
+                    height:35px;
+                }
+            }
+            .control {
+                .check {
+                    padding:7px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                display: none;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+    footer {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 250px) {
+    h1 {
+        margin:0;
+        padding:10px;
+    }
+    .guess-game {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        .game-area {
+            .inputs {
+                gap:0px;
+                .try-box {
+                    margin:0;
+                    margin-bottom: 4px;
+                    span {
+                        display: none;
+                    }
+                }
+                input {
+                    font-size: 30px;
+                    width:30px;
+                    height:30px;
+                }
+            }
+            .control {
+                .check {
+                    padding:7px;
+                }
+            }
+        }
+        .keys-area {
+            margin:0;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            flex-direction: column;
+            h2 {
+                display: none;
+            }
+            .keys-cont {
+                flex-direction: row;
+                .color-box {
+                    padding:5px;
+                    background-color: white;
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    border-radius: 3px;
+                    flex-direction: column;
+                }
+                .color {
+                    display: none;
+                }
+            }
+            .keys-cont .color-box:nth-child(1) {
+                background-color: #f89e13;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(2) {
+                background-color: #18ba89;
+                color:white;
+            }
+            .keys-cont .color-box:nth-child(3) {
+                background-color: #f44336;
+                color:white;
+            }
+        }
+    }
+    footer {
+        padding: 5px;
+    }
+}
